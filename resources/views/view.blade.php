@@ -73,7 +73,7 @@
                     <div class="sidebar-module">
                         <h4>Elsewhere</h4>
                         <ol class="list-unstyled">
-                            <li><a href="#">GitHub</a></li>
+                            <li><a href="https://github.com/myfirstproject42/copypaste426791991">GitHub</a></li>
                         </ol>
                     </div>
                 </div>
