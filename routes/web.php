@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('{id}', 'StartController@getPaste')->where('id', '[0-9, a-z, A-Z]+')->name('showPasta');
+
+Route::post('/add', 'StartController@addPaste')->name('addPaste');
