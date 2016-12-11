@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pastas;
-use DB;
 
 class StartController extends Controller
 {
@@ -48,16 +47,24 @@ class StartController extends Controller
                                                         ->take(10)
                                                         ->get();
         //dump($pas);
-        return view('index')->with(['pas'=>$pas]);
-      
+        return view('index')->with(['pas'=>$pas]); 
     }
+    
+    
     
     public function  getPaste($id){
         $pasta = new Pastas();
         $pasta = Pastas::select(['name','text', 'created_at'])->where('hash_id', $id)->first();
         //dump($pasta);
         
-        return view('view')->with(['pasta'=>$pasta]);
+        $pas = new Pastas();
+        $pas = Pastas::select(['name', 'created_at', 'hash_id'])->where('updated_at', '>', date("Y-m-d H:i:s"))
+                                                        ->where('access', 'Доступен всем')
+                                                        ->orderBy('created_at', 'desc')
+                                                        ->take(10)
+                                                        ->get();
+        //печальный момент, не удалось этот кусок заставить работать через функцию выше в данном представлении
+        return view('view')->with(['pasta'=>$pasta, 'pas'=>$pas]);
     }
 
     public function addPaste(Request $request){
