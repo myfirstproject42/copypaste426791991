@@ -54,7 +54,9 @@ class StartController extends Controller
     
     public function  getPaste($id){
         $pasta = new Pastas();
-        $pasta = Pastas::select(['name','text', 'created_at'])->where('hash_id', $id)->first();
+        $pasta = Pastas::select(['name','text', 'created_at'])->where('hash_id', $id)
+                                                                ->where('updated_at', '>', date("Y-m-d H:i:s"))
+                                                                ->first();
         //dump($pasta);
         
         $pas = new Pastas();
